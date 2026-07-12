@@ -57,6 +57,14 @@ All commands run from `remotion/`. `<job>` is a short kebab-case name.
    Verify the result with `scripts/probe.ts` (duration/resolution as expected)
    before telling the user it's done.
 
+## Version control
+
+Remote: https://github.com/aaaditt/video-editor.git (branch `main`).
+After any meaningful change — a new job's edit-plan.json, transcript, pipeline
+code, or playbook edits — commit and push without being asked. Media files
+stay out of git (see .gitignore); edit plans and captions are committed so
+every edit is reproducible.
+
 ## Conventions
 
 - Job folders: `remotion/public/jobs/<job>/`. Keep `edit-plan.json` and
