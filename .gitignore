@@ -13,6 +13,11 @@ remotion/public/jobs/**/*.mkv
 # Regenerated per-job build artifacts
 remotion/public/jobs/**/concat.txt
 remotion/public/jobs/**/roughcut-probe.json
+remotion/public/jobs/**/analysis.json
+
+# User-supplied music (bundled SFX in assets/sfx ARE committed)
+remotion/public/assets/music/*
+!remotion/public/assets/music/README.md
 
 # Whisper.cpp install + models (large binaries)
 remotion/whisper.cpp/

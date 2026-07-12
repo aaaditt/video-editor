@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@remotion/light-leaks": "^4.0.489"
+  }
+}
