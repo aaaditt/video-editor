@@ -1,0 +1,45 @@
+{
+  "job": "test-clip",
+  "source": "input/test-footage.mp4",
+  "output": { "fps": 30 },
+  "segments": [
+    {
+      "start": 2,
+      "end": 8,
+      "transitionAfter": { "type": "fade", "durationInSeconds": 0.5 }
+    },
+    { "start": 12, "end": 18, "speed": 2 }
+  ],
+  "captions": { "style": "bold-word", "transcriptFile": "captions.json" },
+  "overlays": [
+    {
+      "type": "titleCard",
+      "position": "intro",
+      "durationInSeconds": 2,
+      "title": "Editing Bay",
+      "subtitle": "Pipeline verification"
+    },
+    {
+      "type": "zoom",
+      "from": 1,
+      "to": 3.5,
+      "region": { "x": 0.55, "y": 0.1, "width": 0.4, "height": 0.4 },
+      "easeInSeconds": 0.5
+    },
+    {
+      "type": "callout",
+      "from": 4.5,
+      "to": 6.5,
+      "variant": "label",
+      "x": 0.3,
+      "y": 0.35,
+      "text": "Callout works"
+    },
+    {
+      "type": "watermark",
+      "text": "@aadit",
+      "corner": "bottom-right",
+      "opacity": 0.5
+    }
+  ]
+}

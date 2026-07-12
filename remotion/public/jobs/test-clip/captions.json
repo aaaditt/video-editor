@@ -1,0 +1,121 @@
+[
+  {
+    "text": "(",
+    "startMs": 20,
+    "endMs": 200,
+    "timestampMs": 2560,
+    "confidence": 0.925537
+  },
+  {
+    "text": "bell",
+    "startMs": 200,
+    "endMs": 990,
+    "timestampMs": 2560,
+    "confidence": 0.50619
+  },
+  {
+    "text": " ringing",
+    "startMs": 990,
+    "endMs": 2370,
+    "timestampMs": 2560,
+    "confidence": 0.802515
+  },
+  {
+    "text": ")",
+    "startMs": 2370,
+    "endMs": 2580,
+    "timestampMs": 2560,
+    "confidence": 1
+  },
+  {
+    "text": " (",
+    "startMs": 2580,
+    "endMs": 2780,
+    "timestampMs": 5140,
+    "confidence": 0.959553
+  },
+  {
+    "text": "bell",
+    "startMs": 2780,
+    "endMs": 3570,
+    "timestampMs": 5140,
+    "confidence": 0.320163
+  },
+  {
+    "text": " ringing",
+    "startMs": 3570,
+    "endMs": 4950,
+    "timestampMs": 5140,
+    "confidence": 0.833453
+  },
+  {
+    "text": ")",
+    "startMs": 4950,
+    "endMs": 5160,
+    "timestampMs": 5140,
+    "confidence": 0.992101
+  },
+  {
+    "text": " (",
+    "startMs": 5160,
+    "endMs": 5440,
+    "timestampMs": 7240,
+    "confidence": 0.998323
+  },
+  {
+    "text": "ch",
+    "startMs": 5440,
+    "endMs": 5990,
+    "timestampMs": 7240,
+    "confidence": 0.836452
+  },
+  {
+    "text": "imes",
+    "startMs": 5990,
+    "endMs": 7100,
+    "timestampMs": 7240,
+    "confidence": 0.993104
+  },
+  {
+    "text": ")",
+    "startMs": 7100,
+    "endMs": 7400,
+    "timestampMs": 7240,
+    "confidence": 1
+  },
+  {
+    "text": " (",
+    "startMs": 7400,
+    "endMs": 7650,
+    "timestampMs": 8800,
+    "confidence": 0.760916
+  },
+  {
+    "text": "ch",
+    "startMs": 7650,
+    "endMs": 8140,
+    "timestampMs": 8800,
+    "confidence": 0.117525
+  },
+  {
+    "text": "im",
+    "startMs": 8140,
+    "endMs": 8630,
+    "timestampMs": 8800,
+    "confidence": 0.232595
+  },
+  {
+    "text": "ing",
+    "startMs": 8630,
+    "endMs": 9070,
+    "timestampMs": 8800,
+    "confidence": 0.980747
+  },
+  {
+    "text": ")",
+    "startMs": 9070,
+    "endMs": 9640,
+    "timestampMs": 8800,
+    "confidence": 0.565654
+  }
+]

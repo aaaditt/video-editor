@@ -1,0 +1,18 @@
+node_modules/
+dist/
+out/
+
+# Media files are never committed — only edit plans and transcripts are
+input/*
+!input/.gitkeep
+remotion/public/jobs/**/*.mp4
+remotion/public/jobs/**/*.wav
+remotion/public/jobs/**/*.mov
+remotion/public/jobs/**/*.mkv
+
+# Regenerated per-job build artifacts
+remotion/public/jobs/**/concat.txt
+remotion/public/jobs/**/roughcut-probe.json
+
+# Whisper.cpp install + models (large binaries)
+remotion/whisper.cpp/
