@@ -1,0 +1,10 @@
+{
+  "preset": "tech-demo",
+  "silence": "speedup",
+  "captions": true,
+  "zooms": true,
+  "music": false,
+  "sfx": true,
+  "transitions": true,
+  "grade": true
+}

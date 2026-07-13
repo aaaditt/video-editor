@@ -1,0 +1,111 @@
+{
+  "job": "demo-shorts",
+  "source": "C:\\Aadit\\Personal\\code-ide\\antigravity\\video-editor\\input\\speech-test.mp4",
+  "output": {
+    "fps": 30,
+    "aspect": "9:16",
+    "cropFocus": 0.5
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 6.457125,
+      "speed": 1,
+      "transitionAfter": {
+        "type": "zoom-punch",
+        "durationInSeconds": 0.35
+      }
+    },
+    {
+      "start": 11.381063,
+      "end": 18.04975,
+      "speed": 1,
+      "transitionAfter": {
+        "type": "zoom-punch",
+        "durationInSeconds": 0.35
+      }
+    },
+    {
+      "start": 23.588438,
+      "end": 30.322312,
+      "speed": 1,
+      "transitionAfter": {
+        "type": "zoom-punch",
+        "durationInSeconds": 0.35
+      }
+    },
+    {
+      "start": 34.812063,
+      "end": 40.036,
+      "speed": 1,
+      "transitionAfter": {
+        "type": "zoom-punch",
+        "durationInSeconds": 0.35
+      }
+    },
+    {
+      "start": 43.403562,
+      "end": 45.066667,
+      "speed": 1
+    }
+  ],
+  "captions": {
+    "style": "bold-word",
+    "transcriptFile": "captions.json"
+  },
+  "overlays": [
+    {
+      "type": "progressBar",
+      "color": "#FF3B6B"
+    },
+    {
+      "type": "zoom",
+      "from": 6.676,
+      "to": 9.176,
+      "region": {
+        "x": 0.2,
+        "y": 0.15,
+        "width": 0.6,
+        "height": 0.6
+      },
+      "easeInSeconds": 0.5
+    },
+    {
+      "type": "animatedText",
+      "from": 0.2,
+      "to": 3,
+      "text": "Welcome to the automatic editing machine",
+      "animation": "word-pop",
+      "position": "top"
+    }
+  ],
+  "audio": {
+    "sfx": [
+      {
+        "preset": "whoosh",
+        "at": 6.457125,
+        "volume": 0.5
+      },
+      {
+        "preset": "whoosh",
+        "at": 13.125812,
+        "volume": 0.5
+      },
+      {
+        "preset": "whoosh",
+        "at": 19.859686,
+        "volume": 0.5
+      },
+      {
+        "preset": "whoosh",
+        "at": 25.083623,
+        "volume": 0.5
+      },
+      {
+        "preset": "pop",
+        "at": 6.676,
+        "volume": 0.45
+      }
+    ]
+  }
+}

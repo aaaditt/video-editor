@@ -1,0 +1,331 @@
+[
+  {
+    "text": "Welcome",
+    "startMs": 120,
+    "endMs": 570,
+    "timestampMs": 345,
+    "confidence": 0.967789
+  },
+  {
+    "text": " to",
+    "startMs": 570,
+    "endMs": 730,
+    "timestampMs": 650,
+    "confidence": 0.997468
+  },
+  {
+    "text": " the",
+    "startMs": 730,
+    "endMs": 970,
+    "timestampMs": 850,
+    "confidence": 0.983222
+  },
+  {
+    "text": " automatic",
+    "startMs": 970,
+    "endMs": 1700,
+    "timestampMs": 1335,
+    "confidence": 0.709416
+  },
+  {
+    "text": " editing",
+    "startMs": 1700,
+    "endMs": 2270,
+    "timestampMs": 1985,
+    "confidence": 0.97206
+  },
+  {
+    "text": " machine",
+    "startMs": 2270,
+    "endMs": 2840,
+    "timestampMs": 2555,
+    "confidence": 0.983961
+  },
+  {
+    "text": " demo",
+    "startMs": 2840,
+    "endMs": 3370,
+    "timestampMs": 3105,
+    "confidence": 0.984758
+  },
+  {
+    "text": ".",
+    "startMs": 3370,
+    "endMs": 3420,
+    "timestampMs": 3395,
+    "confidence": 0.793197
+  },
+  {
+    "text": " This",
+    "startMs": 3420,
+    "endMs": 3600,
+    "timestampMs": 3510,
+    "confidence": 0.61932
+  },
+  {
+    "text": " is",
+    "startMs": 3600,
+    "endMs": 3710,
+    "timestampMs": 3655,
+    "confidence": 0.998925
+  },
+  {
+    "text": " the",
+    "startMs": 3710,
+    "endMs": 3970,
+    "timestampMs": 3840,
+    "confidence": 0.997805
+  },
+  {
+    "text": " first",
+    "startMs": 3970,
+    "endMs": 4170,
+    "timestampMs": 4070,
+    "confidence": 0.994989
+  },
+  {
+    "text": " section",
+    "startMs": 4170,
+    "endMs": 4580,
+    "timestampMs": 4375,
+    "confidence": 0.99492
+  },
+  {
+    "text": " where",
+    "startMs": 4580,
+    "endMs": 4870,
+    "timestampMs": 4725,
+    "confidence": 0.994052
+  },
+  {
+    "text": " I",
+    "startMs": 4870,
+    "endMs": 4960,
+    "timestampMs": 4915,
+    "confidence": 0.902058
+  },
+  {
+    "text": " explain",
+    "startMs": 4960,
+    "endMs": 5460,
+    "timestampMs": 5210,
+    "confidence": 0.935282
+  },
+  {
+    "text": " the",
+    "startMs": 5460,
+    "endMs": 5690,
+    "timestampMs": 5575,
+    "confidence": 0.986626
+  },
+  {
+    "text": " project",
+    "startMs": 5690,
+    "endMs": 6170,
+    "timestampMs": 5930,
+    "confidence": 0.993384
+  },
+  {
+    "text": " second",
+    "startMs": 6696,
+    "endMs": 7506,
+    "timestampMs": 7101,
+    "confidence": 0.980802
+  },
+  {
+    "text": " part",
+    "startMs": 7506,
+    "endMs": 8376,
+    "timestampMs": 7941,
+    "confidence": 0.998872
+  },
+  {
+    "text": ".",
+    "startMs": 8376,
+    "endMs": 9076,
+    "timestampMs": 8726,
+    "confidence": 0.957494
+  },
+  {
+    "text": " The",
+    "startMs": 9076,
+    "endMs": 9536,
+    "timestampMs": 9306,
+    "confidence": 0.903613
+  },
+  {
+    "text": " editor",
+    "startMs": 9536,
+    "endMs": 9716,
+    "timestampMs": 9626,
+    "confidence": 0.969294
+  },
+  {
+    "text": " should",
+    "startMs": 9716,
+    "endMs": 10146,
+    "timestampMs": 9931,
+    "confidence": 0.99958
+  },
+  {
+    "text": " detect",
+    "startMs": 10146,
+    "endMs": 10606,
+    "timestampMs": 10376,
+    "confidence": 0.999306
+  },
+  {
+    "text": " the",
+    "startMs": 10606,
+    "endMs": 10786,
+    "timestampMs": 10696,
+    "confidence": 0.996343
+  },
+  {
+    "text": " pause",
+    "startMs": 10786,
+    "endMs": 11146,
+    "timestampMs": 10966,
+    "confidence": 0.995574
+  },
+  {
+    "text": " before",
+    "startMs": 11146,
+    "endMs": 11576,
+    "timestampMs": 11361,
+    "confidence": 0.992954
+  },
+  {
+    "text": " the",
+    "startMs": 11576,
+    "endMs": 11786,
+    "timestampMs": 11681,
+    "confidence": 0.985195
+  },
+  {
+    "text": " sentence",
+    "startMs": 11786,
+    "endMs": 12366,
+    "timestampMs": 12076,
+    "confidence": 0.988052
+  },
+  {
+    "text": " and",
+    "startMs": 12366,
+    "endMs": 12576,
+    "timestampMs": 12471,
+    "confidence": 0.988923
+  },
+  {
+    "text": " important",
+    "startMs": 13367,
+    "endMs": 14037,
+    "timestampMs": 13702,
+    "confidence": 0.997269
+  },
+  {
+    "text": " point",
+    "startMs": 14037,
+    "endMs": 14747,
+    "timestampMs": 14392,
+    "confidence": 0.995091
+  },
+  {
+    "text": " of",
+    "startMs": 14747,
+    "endMs": 15077,
+    "timestampMs": 14912,
+    "confidence": 0.999386
+  },
+  {
+    "text": " the",
+    "startMs": 15077,
+    "endMs": 15487,
+    "timestampMs": 15282,
+    "confidence": 0.999535
+  },
+  {
+    "text": " entire",
+    "startMs": 15487,
+    "endMs": 16337,
+    "timestampMs": 15912,
+    "confidence": 0.999342
+  },
+  {
+    "text": " video",
+    "startMs": 16337,
+    "endMs": 17537,
+    "timestampMs": 16937,
+    "confidence": 0.999249
+  },
+  {
+    "text": " Pay",
+    "startMs": 17977,
+    "endMs": 18207,
+    "timestampMs": 18092,
+    "confidence": 0.985192
+  },
+  {
+    "text": " close",
+    "startMs": 18207,
+    "endMs": 18717,
+    "timestampMs": 18462,
+    "confidence": 0.994395
+  },
+  {
+    "text": " conclusion",
+    "startMs": 20108,
+    "endMs": 21528,
+    "timestampMs": 20818,
+    "confidence": 0.996103
+  },
+  {
+    "text": " of",
+    "startMs": 21528,
+    "endMs": 21858,
+    "timestampMs": 21693,
+    "confidence": 0.999886
+  },
+  {
+    "text": " the",
+    "startMs": 21858,
+    "endMs": 22338,
+    "timestampMs": 22098,
+    "confidence": 0.999348
+  },
+  {
+    "text": " demo",
+    "startMs": 22338,
+    "endMs": 23548,
+    "timestampMs": 22943,
+    "confidence": 0.994877
+  },
+  {
+    "text": ".",
+    "startMs": 23548,
+    "endMs": 23788,
+    "timestampMs": 23668,
+    "confidence": 0.98997
+  },
+  {
+    "text": " Thank",
+    "startMs": 23788,
+    "endMs": 24088,
+    "timestampMs": 23938,
+    "confidence": 0.913811
+  },
+  {
+    "text": " you",
+    "startMs": 24088,
+    "endMs": 24408,
+    "timestampMs": 24248,
+    "confidence": 0.98814
+  },
+  {
+    "text": " for",
+    "startMs": 24408,
+    "endMs": 24718,
+    "timestampMs": 24563,
+    "confidence": 0.999533
+  }
+]

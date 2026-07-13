@@ -1,0 +1,87 @@
+{
+  "job": "demo-tech",
+  "source": "C:\\Aadit\\Personal\\code-ide\\antigravity\\video-editor\\input\\speech-test.mp4",
+  "output": {
+    "fps": 30,
+    "aspect": "source",
+    "cropFocus": 0.5
+  },
+  "segments": [
+    {
+      "start": 0,
+      "end": 6.457125,
+      "speed": 1
+    },
+    {
+      "start": 6.457125,
+      "end": 11.381063,
+      "speed": 4
+    },
+    {
+      "start": 11.381063,
+      "end": 18.04975,
+      "speed": 1
+    },
+    {
+      "start": 18.04975,
+      "end": 23.588438,
+      "speed": 4
+    },
+    {
+      "start": 23.588438,
+      "end": 30.322312,
+      "speed": 1
+    },
+    {
+      "start": 30.322312,
+      "end": 34.812063,
+      "speed": 4
+    },
+    {
+      "start": 34.812063,
+      "end": 40.036,
+      "speed": 1
+    },
+    {
+      "start": 40.036,
+      "end": 43.403562,
+      "speed": 4
+    },
+    {
+      "start": 43.403562,
+      "end": 45.066667,
+      "speed": 1
+    }
+  ],
+  "captions": {
+    "style": "clean",
+    "transcriptFile": "captions.json"
+  },
+  "overlays": [
+    {
+      "type": "progressBar",
+      "color": "#FFD230"
+    },
+    {
+      "type": "zoom",
+      "from": 7.9069845,
+      "to": 10.4069845,
+      "region": {
+        "x": 0.2,
+        "y": 0.15,
+        "width": 0.6,
+        "height": 0.6
+      },
+      "easeInSeconds": 0.5
+    }
+  ],
+  "audio": {
+    "sfx": [
+      {
+        "preset": "pop",
+        "at": 7.9069845,
+        "volume": 0.45
+      }
+    ]
+  }
+}

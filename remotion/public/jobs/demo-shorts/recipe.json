@@ -1,0 +1,10 @@
+{
+  "preset": "shorts",
+  "silence": "cut",
+  "captions": true,
+  "zooms": true,
+  "music": true,
+  "sfx": true,
+  "transitions": true,
+  "grade": true
+}

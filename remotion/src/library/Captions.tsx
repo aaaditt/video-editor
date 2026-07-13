@@ -20,7 +20,9 @@ const CaptionPage: React.FC<{ page: TikTokPage; style: CaptionStyle }> = ({
   style,
 }) => {
   const frame = useCurrentFrame();
-  const { fps, height } = useVideoConfig();
+  const { fps, height: rawHeight, width } = useVideoConfig();
+  // On narrow (vertical) frames, scale type by width so long words fit
+  const height = Math.min(rawHeight, width * 1.35);
 
   // Elapsed time within this page ≈ elapsed rough-cut time (pages don't
   // straddle transition boundaries in practice)
@@ -41,7 +43,8 @@ const CaptionPage: React.FC<{ page: TikTokPage; style: CaptionStyle }> = ({
             fontSize: height * 0.06,
             fontWeight: 900,
             textTransform: "uppercase",
-            whiteSpace: "pre",
+            whiteSpace: "pre-wrap",
+            overflowWrap: "break-word",
             textAlign: "center",
             maxWidth: "85%",
             color: "white",
