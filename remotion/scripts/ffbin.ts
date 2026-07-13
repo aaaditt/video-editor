@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 
@@ -55,6 +55,19 @@ export const runFf = (bin: string, args: string[]): string => {
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
   });
+};
+
+/**
+ * Run ffmpeg and return combined stdout+stderr. Analysis filters
+ * (loudnorm, silencedetect, ebur128, showinfo) report on stderr.
+ */
+export const runFfCapture = (bin: string, args: string[]): string => {
+  const result = spawnSync(bin, args, {
+    encoding: "utf8",
+    maxBuffer: 256 * 1024 * 1024,
+  });
+  if (result.error) throw result.error;
+  return `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
 };
 
 export type ProbeResult = {

@@ -9,6 +9,7 @@
     "@remotion/captions": "^4.0.489",
     "@remotion/cli": "4.0.489",
     "@remotion/install-whisper-cpp": "^4.0.489",
+    "@remotion/light-leaks": "4.0.489",
     "@remotion/media": "^4.0.489",
     "@remotion/tailwind-v4": "4.0.489",
     "@remotion/transitions": "^4.0.489",
@@ -29,6 +30,7 @@
     "typescript": "5.9.3"
   },
   "scripts": {
+    "auto-edit": "tsx scripts/auto-edit.ts",
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
