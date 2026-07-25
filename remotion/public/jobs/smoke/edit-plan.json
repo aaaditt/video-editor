@@ -10,24 +10,24 @@
   },
   "segments": [
     {
-      "start": 1.658,
-      "end": 2.413,
+      "start": 1.578,
+      "end": 2.335,
       "speed": 0.6
     },
     {
-      "start": 2.413,
-      "end": 4.886,
-      "speed": 1.3739
+      "start": 2.335,
+      "end": 4.772,
+      "speed": 1.3539
     },
     {
-      "start": 4.886,
-      "end": 6.253,
-      "speed": 0.6701
+      "start": 4.772,
+      "end": 6.141,
+      "speed": 0.6711
     },
     {
-      "start": 6.253,
-      "end": 11.519,
-      "speed": 1.0593
+      "start": 6.141,
+      "end": 11.337,
+      "speed": 1.0451
     }
   ],
   "overlays": [
@@ -39,13 +39,13 @@
       "type": "titleCard",
       "position": "intro",
       "durationInSeconds": 2.4,
-      "title": "demotape phase 4: ship a demo to the pull request",
-      "subtitle": "aaaditt/video-editor · main"
+      "title": "Add a guide for writing demo files",
+      "subtitle": "aaaditt/video-editor · demo/ship-test"
     },
     {
       "type": "animatedText",
-      "from": 0.10066666666666663,
-      "to": 1.1576666666666662,
+      "from": 0.10093333333333332,
+      "to": 1.1607333333333332,
       "text": "Open the projects board",
       "animation": "word-pop",
       "position": "bottom",
@@ -53,8 +53,8 @@
     },
     {
       "type": "animatedText",
-      "from": 1.402333333333333,
-      "to": 2.914333333333333,
+      "from": 1.4056666666666664,
+      "to": 2.9176666666666664,
       "text": "Apply the new status filter",
       "animation": "word-pop",
       "position": "bottom",
@@ -62,8 +62,8 @@
     },
     {
       "type": "animatedText",
-      "from": 3.2215333333333334,
-      "to": 4.935133333333333,
+      "from": 3.2248666666666663,
+      "to": 4.938466666666667,
       "text": "Only in-review work is listed now",
       "animation": "word-pop",
       "position": "bottom",
@@ -71,8 +71,8 @@
     },
     {
       "type": "animatedText",
-      "from": 5.2615333333333325,
-      "to": 6.975133333333333,
+      "from": 5.264866666666666,
+      "to": 6.978466666666667,
       "text": "And the filter survives a reload",
       "animation": "word-pop",
       "position": "bottom",
@@ -80,7 +80,7 @@
     },
     {
       "type": "clickRing",
-      "at": 1.7809374578784198,
+      "at": 1.7580146354807824,
       "x": 0.05159912109375,
       "y": 0.26180555555555557,
       "durationInSeconds": 0.7,
@@ -88,7 +88,7 @@
     },
     {
       "type": "clickRing",
-      "at": 2.5379127914813315,
+      "at": 2.5350355628504992,
       "x": 0.09609375,
       "y": 0.4076388888888889,
       "durationInSeconds": 0.7,
@@ -96,7 +96,7 @@
     },
     {
       "type": "clickRing",
-      "at": 4.038786881248476,
+      "at": 4.0391977112247375,
       "x": 0.135400390625,
       "y": 0.26180555555555557,
       "durationInSeconds": 0.7,
@@ -104,8 +104,8 @@
     },
     {
       "type": "zoom",
-      "from": 1.5083333333333329,
-      "to": 2.908333333333333,
+      "from": 1.5116666666666665,
+      "to": 2.9116666666666666,
       "region": {
         "x": 0,
         "y": 0.09763888888888889,
@@ -116,8 +116,8 @@
     },
     {
       "type": "zoom",
-      "from": 3.308333333333333,
-      "to": 4.948333333333332,
+      "from": 3.3116666666666665,
+      "to": 4.951666666666666,
       "region": {
         "x": 0,
         "y": 0,
@@ -128,24 +128,24 @@
     },
     {
       "type": "codeCard",
-      "from": 6.869761904761904,
-      "to": 10.069761904761904,
-      "title": "remotion/scripts/ship.ts",
+      "from": 6.87309523809524,
+      "to": 10.07309523809524,
+      "title": "demos/README.md",
       "lines": [
-        "@@ -0,0 +1,257 @@",
-        "+/**",
-        "+ * Deliver a finished demo to the pull request.",
-        "+ *",
-        "+ * Usage (from remotion/):",
-        "+ *   npx tsx scripts/ship.ts <job> [--dry-run] [--no-release] [--file <mp4>]",
-        "+ *",
-        "+ * You cannot attach a video to a PR comment through the API — but an image URL",
-        "+ * renders inline, and release assets are image URLs. So the comment carries a",
-        "+ * GIF preview plus a link to the full-quality MP4, both hosted as assets of a",
-        "+ * prerelease tagged demo-<job>.",
-        "+ *",
-        "+ *   --dry-run     print the comment body and stop; nothing is uploaded",
-        "+ *   --no-release  build the GIF only, leave distribution alone"
+        "@@ -0,0 +1,62 @@",
+        "+# demos/",
+        "+",
+        "+One file per demo. Each describes a flow; `demotape` performs it against your",
+        "+running app and records the result.",
+        "+",
+        "+```bash",
+        "+cd remotion",
+        "+npm run demo -- ../demos/<name>.demo.ts",
+        "+```",
+        "+",
+        "+## Writing one",
+        "+",
+        "+```ts"
       ]
     }
   ],
