@@ -1,0 +1,19 @@
+{
+  "//": "Demo files live outside remotion/ but run with its tsx + deps, so point module resolution there.",
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "typeRoots": ["../remotion/node_modules/@types"],
+    "types": ["node"],
+    "paths": {
+      "*": ["../remotion/node_modules/*"]
+    }
+  },
+  "include": ["**/*.ts"]
+}

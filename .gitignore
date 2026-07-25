@@ -9,11 +9,17 @@ remotion/public/jobs/**/*.mp4
 remotion/public/jobs/**/*.wav
 remotion/public/jobs/**/*.mov
 remotion/public/jobs/**/*.mkv
+remotion/public/jobs/**/*.webm
+remotion/public/jobs/**/*.gif
+remotion/public/jobs/**/shots/
 
 # Regenerated per-job build artifacts
 remotion/public/jobs/**/concat.txt
 remotion/public/jobs/**/roughcut-probe.json
 remotion/public/jobs/**/analysis.json
+
+# Chrome profile used for recordings (holds real logged-in sessions)
+.demotape/
 
 # User-supplied music (bundled SFX in assets/sfx ARE committed)
 remotion/public/assets/music/*

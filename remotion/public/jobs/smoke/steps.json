@@ -1,0 +1,72 @@
+{
+  "job": "smoke",
+  "url": "file:///C:/Aadit/Personal/code-ide/antigravity/video-editor/demos/smoke-app.html",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "recordedAt": "2026-07-25T17:14:47.565Z",
+  "wallClockMs": 9487,
+  "videoDurationSeconds": 9.92,
+  "offsetMs": -535,
+  "offsetSource": "sync-marker",
+  "steps": [
+    {
+      "index": 0,
+      "caption": "Open the projects board",
+      "tStart": 2310,
+      "tEnd": 2915,
+      "clicks": []
+    },
+    {
+      "index": 1,
+      "caption": "Apply the new status filter",
+      "tStart": 2915,
+      "tEnd": 5378,
+      "clicks": [
+        {
+          "t": 3594,
+          "x": 0.05159912109375,
+          "y": 0.26180555555555557
+        },
+        {
+          "t": 4664,
+          "x": 0.09609375,
+          "y": 0.4076388888888889
+        }
+      ],
+      "focus": {
+        "x": 0.02265625,
+        "y": 0.37916666666666665,
+        "width": 0.146875,
+        "height": 0.05694444444444444
+      }
+    },
+    {
+      "index": 2,
+      "caption": "Only in-review work is listed now",
+      "tStart": 5378,
+      "tEnd": 6729,
+      "clicks": [
+        {
+          "t": 6016,
+          "x": 0.135400390625,
+          "y": 0.26180555555555557
+        }
+      ],
+      "focus": {
+        "x": 0.0891357421875,
+        "y": 0.2361111111111111,
+        "width": 0.092529296875,
+        "height": 0.05138888888888889
+      }
+    },
+    {
+      "index": 3,
+      "caption": "And the filter survives a reload",
+      "tStart": 6729,
+      "tEnd": 7974,
+      "clicks": []
+    }
+  ]
+}

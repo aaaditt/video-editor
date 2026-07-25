@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Acme — Projects</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font: 15px/1.5 -apple-system, "Segoe UI", system-ui, sans-serif;
+        background: #0d1117;
+        color: #e6edf3;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 28px;
+        border-bottom: 1px solid #21262d;
+        background: #161b22;
+      }
+      .logo { font-weight: 700; letter-spacing: -0.02em; }
+      .logo span { color: #f0883e; }
+      nav { display: flex; gap: 4px; margin-left: 12px; }
+      nav a {
+        color: #8b949e; text-decoration: none; padding: 6px 12px;
+        border-radius: 6px; font-size: 14px;
+      }
+      nav a:hover { background: #21262d; color: #e6edf3; }
+      nav a.active { color: #e6edf3; background: #21262d; }
+      main { padding: 28px; max-width: 980px; }
+      h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.02em; }
+      .sub { color: #8b949e; font-size: 14px; margin-bottom: 22px; }
+      .toolbar { display: flex; gap: 10px; margin-bottom: 18px; }
+      button {
+        font: inherit; font-size: 14px; cursor: pointer;
+        background: #21262d; color: #e6edf3;
+        border: 1px solid #30363d; border-radius: 6px; padding: 7px 14px;
+      }
+      button:hover { background: #30363d; }
+      button.primary { background: #238636; border-color: #2ea043; }
+      button.primary:hover { background: #2ea043; }
+      #menu {
+        display: none; position: absolute; margin-top: 6px; z-index: 10;
+        background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.55); overflow: hidden; min-width: 190px;
+      }
+      #menu.open { display: block; }
+      #menu button {
+        display: block; width: 100%; text-align: left; border: 0;
+        border-radius: 0; background: transparent; padding: 10px 14px;
+      }
+      #menu button:hover { background: #21262d; }
+      .card {
+        border: 1px solid #21262d; border-radius: 10px;
+        background: #161b22; overflow: hidden;
+      }
+      .row {
+        display: flex; align-items: center; gap: 14px;
+        padding: 14px 18px; border-bottom: 1px solid #21262d;
+      }
+      .row:last-child { border-bottom: 0; }
+      .row .name { flex: 1; font-weight: 500; }
+      .badge {
+        font-size: 12px; padding: 3px 10px; border-radius: 999px;
+        border: 1px solid transparent;
+      }
+      .review  { background: #1f2b45; color: #79c0ff; border-color: #1f6feb; }
+      .done    { background: #12261e; color: #56d364; border-color: #238636; }
+      .todo    { background: #2b2416; color: #e3b341; border-color: #9e6a03; }
+      .empty { padding: 22px 18px; color: #8b949e; }
+      .pill {
+        display: none; align-items: center; gap: 7px; font-size: 13px;
+        color: #79c0ff; background: #1f2b45; border: 1px solid #1f6feb;
+        border-radius: 999px; padding: 5px 12px;
+      }
+      .pill.on { display: inline-flex; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">acme<span>/</span>board</div>
+      <nav>
+        <a href="#" class="active">Projects</a>
+        <a href="#">Insights</a>
+        <a href="#">Settings</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Projects</h1>
+      <div class="sub">12 active across 3 teams</div>
+
+      <div class="toolbar">
+        <button id="filter">Filter ▾</button>
+        <span class="pill" id="pill">Status: In review</span>
+      </div>
+      <div id="menu">
+        <button data-status="all">All statuses</button>
+        <button data-status="review">In review</button>
+        <button data-status="done">Shipped</button>
+        <button data-status="todo">Backlog</button>
+      </div>
+
+      <div class="card" id="list">
+        <div class="row" data-status="review">
+          <span class="name">Payments retry queue</span>
+          <span class="badge review">In review</span>
+        </div>
+        <div class="row" data-status="done">
+          <span class="name">Onboarding checklist</span>
+          <span class="badge done">Shipped</span>
+        </div>
+        <div class="row" data-status="review">
+          <span class="name">Search ranking v2</span>
+          <span class="badge review">In review</span>
+        </div>
+        <div class="row" data-status="todo">
+          <span class="name">Audit log export</span>
+          <span class="badge todo">Backlog</span>
+        </div>
+        <div class="row" data-status="done">
+          <span class="name">SSO for enterprise</span>
+          <span class="badge done">Shipped</span>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const menu = document.getElementById("menu");
+      document.getElementById("filter").addEventListener("click", (e) => {
+        e.stopPropagation();
+        menu.classList.toggle("open");
+      });
+
+      menu.querySelectorAll("button").forEach((b) => {
+        b.addEventListener("click", () => {
+          const want = b.dataset.status;
+          menu.classList.remove("open");
+          document.querySelectorAll("#list .row").forEach((row) => {
+            row.style.display =
+              want === "all" || row.dataset.status === want ? "" : "none";
+          });
+          const pill = document.getElementById("pill");
+          pill.textContent = "Status: " + b.textContent;
+          pill.classList.toggle("on", want !== "all");
+          localStorage.setItem("statusFilter", want);
+        });
+      });
+
+      // The "feature" being demoed: the filter survives a reload.
+      const saved = localStorage.getItem("statusFilter");
+      if (saved && saved !== "all") {
+        const target = [...menu.querySelectorAll("button")].find(
+          (b) => b.dataset.status === saved,
+        );
+        if (target) target.click();
+      }
+    </script>
+  </body>
+</html>
