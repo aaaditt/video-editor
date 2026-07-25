@@ -370,7 +370,9 @@ const main = () => {
     );
   }
 
-  const aspectFlag = args[args.indexOf("--aspect") + 1];
+  // Guard the index: indexOf gives -1 when absent, and args[-1 + 1] is the job.
+  const aspectIndex = args.indexOf("--aspect");
+  const aspectFlag = aspectIndex >= 0 ? args[aspectIndex + 1] : undefined;
   const music = args.includes("--music") ? firstMusicFile() : null;
   if (args.includes("--music") && !music) {
     console.warn("! --music given but public/assets/music/ is empty.");
