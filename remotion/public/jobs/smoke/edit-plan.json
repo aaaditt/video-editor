@@ -10,24 +10,24 @@
   },
   "segments": [
     {
-      "start": 1.625,
-      "end": 2.38,
+      "start": 1.658,
+      "end": 2.413,
       "speed": 0.6
     },
     {
-      "start": 2.38,
-      "end": 4.843,
-      "speed": 1.3683
+      "start": 2.413,
+      "end": 4.886,
+      "speed": 1.3739
     },
     {
-      "start": 4.843,
-      "end": 6.194,
-      "speed": 0.6623
+      "start": 4.886,
+      "end": 6.253,
+      "speed": 0.6701
     },
     {
-      "start": 6.194,
-      "end": 8.339,
-      "speed": 1.0515
+      "start": 6.253,
+      "end": 11.519,
+      "speed": 1.0593
     }
   ],
   "overlays": [
@@ -39,13 +39,13 @@
       "type": "titleCard",
       "position": "intro",
       "durationInSeconds": 2.4,
-      "title": "demotape phase 2: draft an edit plan from the step log",
+      "title": "demotape phase 4: ship a demo to the pull request",
       "subtitle": "aaaditt/video-editor · main"
     },
     {
       "type": "animatedText",
-      "from": 0.10066666666666667,
-      "to": 1.1576666666666666,
+      "from": 0.10066666666666663,
+      "to": 1.1576666666666662,
       "text": "Open the projects board",
       "animation": "word-pop",
       "position": "bottom",
@@ -53,8 +53,8 @@
     },
     {
       "type": "animatedText",
-      "from": 1.4023333333333334,
-      "to": 2.9143333333333334,
+      "from": 1.402333333333333,
+      "to": 2.914333333333333,
       "text": "Apply the new status filter",
       "animation": "word-pop",
       "position": "bottom",
@@ -63,7 +63,7 @@
     {
       "type": "animatedText",
       "from": 3.2215333333333334,
-      "to": 4.935133333333334,
+      "to": 4.935133333333333,
       "text": "Only in-review work is listed now",
       "animation": "word-pop",
       "position": "bottom",
@@ -71,8 +71,8 @@
     },
     {
       "type": "animatedText",
-      "from": 5.261533333333333,
-      "to": 6.975133333333334,
+      "from": 5.2615333333333325,
+      "to": 6.975133333333333,
       "text": "And the filter survives a reload",
       "animation": "word-pop",
       "position": "bottom",
@@ -80,7 +80,7 @@
     },
     {
       "type": "clickRing",
-      "at": 1.7545574502639059,
+      "at": 1.7809374578784198,
       "x": 0.05159912109375,
       "y": 0.26180555555555557,
       "durationInSeconds": 0.7,
@@ -88,7 +88,7 @@
     },
     {
       "type": "clickRing",
-      "at": 2.5365306536743804,
+      "at": 2.5379127914813315,
       "x": 0.09609375,
       "y": 0.4076388888888889,
       "durationInSeconds": 0.7,
@@ -96,7 +96,7 @@
     },
     {
       "type": "clickRing",
-      "at": 4.0217086109055025,
+      "at": 4.038786881248476,
       "x": 0.135400390625,
       "y": 0.26180555555555557,
       "durationInSeconds": 0.7,
@@ -104,8 +104,8 @@
     },
     {
       "type": "zoom",
-      "from": 1.5083333333333333,
-      "to": 2.9083333333333337,
+      "from": 1.5083333333333329,
+      "to": 2.908333333333333,
       "region": {
         "x": 0,
         "y": 0.09763888888888889,
@@ -116,8 +116,8 @@
     },
     {
       "type": "zoom",
-      "from": 3.3083333333333336,
-      "to": 4.948333333333333,
+      "from": 3.308333333333333,
+      "to": 4.948333333333332,
       "region": {
         "x": 0,
         "y": 0,
@@ -125,6 +125,28 @@
         "height": 0.62
       },
       "easeInSeconds": 0.5
+    },
+    {
+      "type": "codeCard",
+      "from": 6.869761904761904,
+      "to": 10.069761904761904,
+      "title": "remotion/scripts/ship.ts",
+      "lines": [
+        "@@ -0,0 +1,257 @@",
+        "+/**",
+        "+ * Deliver a finished demo to the pull request.",
+        "+ *",
+        "+ * Usage (from remotion/):",
+        "+ *   npx tsx scripts/ship.ts <job> [--dry-run] [--no-release] [--file <mp4>]",
+        "+ *",
+        "+ * You cannot attach a video to a PR comment through the API — but an image URL",
+        "+ * renders inline, and release assets are image URLs. So the comment carries a",
+        "+ * GIF preview plus a link to the full-quality MP4, both hosted as assets of a",
+        "+ * prerelease tagged demo-<job>.",
+        "+ *",
+        "+ *   --dry-run     print the comment body and stop; nothing is uploaded",
+        "+ *   --no-release  build the GIF only, leave distribution alone"
+      ]
     }
   ],
   "audio": {

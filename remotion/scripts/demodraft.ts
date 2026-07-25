@@ -273,8 +273,27 @@ export const draftDemoPlan = (
   if (opts.zooms) overlays.push(...buildZooms(chapters));
 
   if (opts.code) {
-    const total = chapters.reduce((s, c) => s + c.roughDuration, 0);
     const last = chapters[chapters.length - 1];
+
+    // The last chapter is trimmed to TAIL_SECONDS like any other, which leaves
+    // no room for a card. When one is wanted, reclaim as much of the recorded
+    // outro hold as it needs — that footage is idle, so the card simply sits
+    // over a still frame of the finished state.
+    //
+    // Deliberately after the text and zoom overlays are built: those use the
+    // pre-extension length, so the caption has finished and any zoom has
+    // released by the time the card appears, rather than competing with it.
+    const want = CODE_CARD_MAX_SECONDS / 0.7 + 0.4;
+    if (last.roughDuration < want) {
+      const hardEnd = Math.max(0, videoDuration - SHUTDOWN_MARGIN);
+      const extraSrc = (want - last.roughDuration) * last.speed;
+      const room = Math.max(0, hardEnd - last.srcEnd);
+      last.srcEnd += Math.min(extraSrc, room);
+      last.roughDuration = (last.srcEnd - last.srcStart) / last.speed;
+      segments[segments.length - 1].end = Number(last.srcEnd.toFixed(3));
+    }
+
+    const total = chapters.reduce((s, c) => s + c.roughDuration, 0);
     const available = Math.min(CODE_CARD_MAX_SECONDS, last.roughDuration * 0.7);
     const file = git.files[0];
 
@@ -282,15 +301,12 @@ export const draftDemoPlan = (
       notes.push("No changed files found, so no code card was added.");
     } else if (available < CODE_CARD_MIN_SECONDS) {
       notes.push(
-        `Last chapter is too short (${last.roughDuration.toFixed(1)}s) to hold a ` +
-          `code card. Raise outroHold in the demo file and re-record.`,
+        `Not enough footage after the last step to hold a code card ` +
+          `(${last.roughDuration.toFixed(1)}s). Raise outroHold in the demo ` +
+          `file and re-record.`,
       );
     } else {
-      const lines = readDiffLines(
-        file.path,
-        git.baseBranch,
-        CODE_CARD_MAX_LINES,
-      );
+      const lines = readDiffLines(file.path, git.diffRange, CODE_CARD_MAX_LINES);
       if (lines.length === 0) {
         notes.push(`No diff hunks available for ${file.path}.`);
       } else {

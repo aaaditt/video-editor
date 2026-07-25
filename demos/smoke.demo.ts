@@ -16,7 +16,8 @@ import {
 demo({
   url: pathToFileURL(path.join(__dirname, "smoke-app.html")).href,
   viewport: { width: 1280, height: 720 },
-  outroHold: 1.5,
+  // Generous, so there is idle footage for a --code card to sit over.
+  outroHold: 5,
   // The fixture persists the filter to localStorage, and recordings share one
   // Chrome profile — without this, run 2 starts where run 1 left off.
   resetStorage: true,

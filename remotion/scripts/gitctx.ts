@@ -41,6 +41,12 @@ export type GitContext = {
   branch: string | null;
   /** Branch the comparison is against (main/master), if one exists. */
   baseBranch: string | null;
+  /**
+   * The revision range everything about "what changed" is derived from.
+   * Shared so the file list and the diff hunks can never disagree — they did
+   * once, when only one of them fell back for the on-base-branch case.
+   */
+  diffRange: string;
   subject: string | null;
   repo: string | null;
   files: DiffFile[];
@@ -81,13 +87,23 @@ export const readGitContext = (): GitContext => {
     : null;
 
   // Compare against the merge base, so unrelated commits landing on main
-  // afterwards don't show up as part of this feature.
-  const files =
+  // afterwards don't show up as part of this feature. On the base branch
+  // itself there is nothing to compare to, so fall back to the last commit.
+  const diffRange =
     baseBranch && branch && branch !== baseBranch
-      ? parseNumstat(run("git", ["diff", "--numstat", `${baseBranch}...HEAD`]))
-      : parseNumstat(run("git", ["diff", "--numstat", "HEAD~1..HEAD"]));
+      ? `${baseBranch}...HEAD`
+      : "HEAD~1..HEAD";
+  const files = parseNumstat(run("git", ["diff", "--numstat", diffRange]));
 
-  return { branch, baseBranch, subject, repo, files, pr: readPullRequest() };
+  return {
+    branch,
+    baseBranch,
+    diffRange,
+    subject,
+    repo,
+    files,
+    pr: readPullRequest(),
+  };
 };
 
 /** Open PR for the current branch, via gh. Null if gh is absent or there is none. */
@@ -109,24 +125,36 @@ export const readPullRequest = (): PullRequest | null => {
  */
 export const readDiffLines = (
   filePath: string,
-  baseBranch: string | null,
+  diffRange: string,
   maxLines: number,
 ): string[] => {
-  const range = baseBranch ? `${baseBranch}...HEAD` : "HEAD~1..HEAD";
-  const raw = run("git", ["diff", "--unified=2", range, "--", filePath]);
+  const raw = run("git", ["diff", "--unified=2", diffRange, "--", filePath]);
   if (!raw) return [];
+
+  // Everything git prints before the first hunk is plumbing — mode bits,
+  // blob hashes, rename scores. None of it belongs on a card.
+  const HEADER = [
+    "diff --git",
+    "index ",
+    "--- ",
+    "+++ ",
+    "new file mode",
+    "deleted file mode",
+    "old mode",
+    "new mode",
+    "similarity index",
+    "dissimilarity index",
+    "rename from",
+    "rename to",
+    "copy from",
+    "copy to",
+    "Binary files",
+    "\\ No newline",
+  ];
 
   const lines: string[] = [];
   for (const line of raw.split("\n")) {
-    // Skip the file header block; keep hunk markers and content.
-    if (
-      line.startsWith("diff --git") ||
-      line.startsWith("index ") ||
-      line.startsWith("--- ") ||
-      line.startsWith("+++ ")
-    ) {
-      continue;
-    }
+    if (HEADER.some((prefix) => line.startsWith(prefix))) continue;
     lines.push(line);
     if (lines.length >= maxLines) break;
   }

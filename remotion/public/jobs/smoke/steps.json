@@ -5,32 +5,32 @@
     "width": 1280,
     "height": 720
   },
-  "recordedAt": "2026-07-25T17:14:47.565Z",
-  "wallClockMs": 9487,
-  "videoDurationSeconds": 9.92,
-  "offsetMs": -535,
+  "recordedAt": "2026-07-25T17:41:29.026Z",
+  "wallClockMs": 13099,
+  "videoDurationSeconds": 13.52,
+  "offsetMs": -576,
   "offsetSource": "sync-marker",
   "steps": [
     {
       "index": 0,
       "caption": "Open the projects board",
-      "tStart": 2310,
-      "tEnd": 2915,
+      "tStart": 2384,
+      "tEnd": 2989,
       "clicks": []
     },
     {
       "index": 1,
       "caption": "Apply the new status filter",
-      "tStart": 2915,
-      "tEnd": 5378,
+      "tStart": 2989,
+      "tEnd": 5462,
       "clicks": [
         {
-          "t": 3594,
+          "t": 3707,
           "x": 0.05159912109375,
           "y": 0.26180555555555557
         },
         {
-          "t": 4664,
+          "t": 4747,
           "x": 0.09609375,
           "y": 0.4076388888888889
         }
@@ -45,11 +45,11 @@
     {
       "index": 2,
       "caption": "Only in-review work is listed now",
-      "tStart": 5378,
-      "tEnd": 6729,
+      "tStart": 5462,
+      "tEnd": 6829,
       "clicks": [
         {
-          "t": 6016,
+          "t": 6119,
           "x": 0.135400390625,
           "y": 0.26180555555555557
         }
@@ -64,8 +64,8 @@
     {
       "index": 3,
       "caption": "And the filter survives a reload",
-      "tStart": 6729,
-      "tEnd": 7974,
+      "tStart": 6829,
+      "tEnd": 8090,
       "clicks": []
     }
   ]

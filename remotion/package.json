@@ -1,7 +1,7 @@
 {
-  "name": "remotion",
+  "name": "demotape",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Record a feature demo by driving your app, auto-edit it, post it to the PR",
   "repository": {},
   "license": "UNLICENSED",
   "private": true,
@@ -31,6 +31,12 @@
     "typescript": "5.9.3"
   },
   "scripts": {
+    "demo": "tsx scripts/demo.ts",
+    "record": "tsx scripts/record.ts",
+    "draft": "tsx scripts/demodraft.ts",
+    "cut": "tsx scripts/roughcut.ts",
+    "ship": "tsx scripts/ship.ts",
+    "login": "tsx scripts/login.ts",
     "auto-edit": "tsx scripts/auto-edit.ts",
     "dev": "remotion studio",
     "build": "remotion bundle",
