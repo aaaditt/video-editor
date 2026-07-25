@@ -17,9 +17,9 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import type { WhisperModel } from "@remotion/install-whisper-cpp";
-import { recipeSchema, type Recipe } from "../src/EditPlan";
+import { recipeSchema } from "../src/EditPlan";
 import { analyzeFootage, type Analysis } from "./analyze";
-import { draftPlan, PRESETS } from "./autodraft";
+import { draftPlan, PRESETS, type FootagePreset } from "./autodraft";
 import { runRoughcut } from "./roughcut";
 
 const REMOTION_DIR = path.resolve(__dirname, "..");
@@ -52,7 +52,7 @@ const main = async () => {
     process.exit(1);
   }
 
-  const presetName = (flagValue("--preset") ?? "tech-demo") as Recipe["preset"];
+  const presetName = (flagValue("--preset") ?? "tech-demo") as FootagePreset;
   if (!PRESETS[presetName]) {
     console.error(
       `Unknown preset "${presetName}". Available: ${Object.keys(PRESETS).join(", ")}`,

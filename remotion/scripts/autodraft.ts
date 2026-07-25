@@ -35,7 +35,14 @@ type PresetDefaults = {
   aspect: "source" | "9:16" | "1:1";
 };
 
-export const PRESETS: Record<Recipe["preset"], PresetDefaults> = {
+/**
+ * Presets that describe how to edit supplied footage. The "demo" preset is
+ * deliberately absent: recorded demos carry a step log, so they are drafted by
+ * demodraft.ts from ground truth rather than inferred from audio here.
+ */
+export type FootagePreset = Exclude<Recipe["preset"], "demo">;
+
+export const PRESETS: Record<FootagePreset, PresetDefaults> = {
   "tech-demo": {
     recipe: { music: false, silence: "speedup" },
     captionStyle: "clean",
@@ -101,7 +108,13 @@ export const draftPlan = (
   recipe: Recipe,
   job: string,
 ): { plan: EditPlan; captions: Caption[] } => {
-  const preset = PRESETS[recipe.preset];
+  const preset = PRESETS[recipe.preset as FootagePreset];
+  if (!preset) {
+    throw new Error(
+      `autodraft cannot handle the "${recipe.preset}" preset. Recorded demos ` +
+        `are drafted by demodraft.ts, which works from steps.json.`,
+    );
+  }
   const duration = analysis.probe.durationInSeconds;
 
   // --- Segments -----------------------------------------------------------
@@ -322,8 +335,7 @@ if (require.main === module) {
   const presetName = presetFlag >= 0 ? args[presetFlag + 1] : "tech-demo";
   const silenceFlag = args.find((a) => a.startsWith("--silence="));
 
-  const presetDefaults =
-    PRESETS[presetName as Recipe["preset"]]?.recipe ?? {};
+  const presetDefaults = PRESETS[presetName as FootagePreset]?.recipe ?? {};
 
   const recipe = recipeSchema.parse({
     preset: presetName,

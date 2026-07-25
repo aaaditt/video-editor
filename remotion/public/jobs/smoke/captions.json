@@ -1,0 +1,149 @@
+[
+  {
+    "text": "Open",
+    "startMs": 101,
+    "endMs": 365,
+    "timestampMs": 101,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 365,
+    "endMs": 629,
+    "timestampMs": 365,
+    "confidence": 1
+  },
+  {
+    "text": " projects",
+    "startMs": 629,
+    "endMs": 893,
+    "timestampMs": 629,
+    "confidence": 1
+  },
+  {
+    "text": " board",
+    "startMs": 893,
+    "endMs": 1158,
+    "timestampMs": 893,
+    "confidence": 1
+  },
+  {
+    "text": "Apply",
+    "startMs": 1402,
+    "endMs": 1705,
+    "timestampMs": 1402,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 1705,
+    "endMs": 2007,
+    "timestampMs": 1705,
+    "confidence": 1
+  },
+  {
+    "text": " new",
+    "startMs": 2007,
+    "endMs": 2310,
+    "timestampMs": 2007,
+    "confidence": 1
+  },
+  {
+    "text": " status",
+    "startMs": 2310,
+    "endMs": 2612,
+    "timestampMs": 2310,
+    "confidence": 1
+  },
+  {
+    "text": " filter",
+    "startMs": 2612,
+    "endMs": 2914,
+    "timestampMs": 2612,
+    "confidence": 1
+  },
+  {
+    "text": "Only",
+    "startMs": 3222,
+    "endMs": 3507,
+    "timestampMs": 3222,
+    "confidence": 1
+  },
+  {
+    "text": " in-review",
+    "startMs": 3507,
+    "endMs": 3793,
+    "timestampMs": 3507,
+    "confidence": 1
+  },
+  {
+    "text": " work",
+    "startMs": 3793,
+    "endMs": 4078,
+    "timestampMs": 3793,
+    "confidence": 1
+  },
+  {
+    "text": " is",
+    "startMs": 4078,
+    "endMs": 4364,
+    "timestampMs": 4078,
+    "confidence": 1
+  },
+  {
+    "text": " listed",
+    "startMs": 4364,
+    "endMs": 4650,
+    "timestampMs": 4364,
+    "confidence": 1
+  },
+  {
+    "text": " now",
+    "startMs": 4650,
+    "endMs": 4935,
+    "timestampMs": 4650,
+    "confidence": 1
+  },
+  {
+    "text": "And",
+    "startMs": 5262,
+    "endMs": 5547,
+    "timestampMs": 5262,
+    "confidence": 1
+  },
+  {
+    "text": " the",
+    "startMs": 5547,
+    "endMs": 5833,
+    "timestampMs": 5547,
+    "confidence": 1
+  },
+  {
+    "text": " filter",
+    "startMs": 5833,
+    "endMs": 6118,
+    "timestampMs": 5833,
+    "confidence": 1
+  },
+  {
+    "text": " survives",
+    "startMs": 6118,
+    "endMs": 6404,
+    "timestampMs": 6118,
+    "confidence": 1
+  },
+  {
+    "text": " a",
+    "startMs": 6404,
+    "endMs": 6690,
+    "timestampMs": 6404,
+    "confidence": 1
+  },
+  {
+    "text": " reload",
+    "startMs": 6690,
+    "endMs": 6975,
+    "timestampMs": 6690,
+    "confidence": 1
+  }
+]

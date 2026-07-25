@@ -144,6 +144,42 @@ export const progressBarSchema = z.object({
   color: z.string().default("#FFD230"),
 });
 
+/**
+ * Ripple marking a click. Drawn here rather than in the browser so it stays
+ * crisp at render resolution and can be restyled without re-recording.
+ */
+export const clickRingSchema = z.object({
+  type: z.literal("clickRing"),
+  at: z.number().min(0),
+  // Normalized 0..1 position of the click within the frame
+  x: z.number().min(0).max(1),
+  y: z.number().min(0).max(1),
+  durationInSeconds: z.number().positive().max(2).default(0.7),
+  color: z.string().default("#FFD230"),
+});
+
+/**
+ * A diff, rendered as a card. Composed from `git diff` rather than filmed off
+ * an editor — sharper, correctly sized for the frame, and always current.
+ */
+export const codeCardSchema = z.object({
+  type: z.literal("codeCard"),
+  from: z.number().min(0),
+  to: z.number().positive(),
+  title: z.string(),
+  // Raw diff lines; leading +/- drives the colouring.
+  lines: z.array(z.string()).min(1),
+});
+
+/** A command and its output, styled rather than screen-captured. */
+export const terminalCardSchema = z.object({
+  type: z.literal("terminalCard"),
+  from: z.number().min(0),
+  to: z.number().positive(),
+  command: z.string(),
+  output: z.array(z.string()).default([]),
+});
+
 export const overlaySchema = z.discriminatedUnion("type", [
   zoomOverlaySchema,
   calloutOverlaySchema,
@@ -158,6 +194,9 @@ export const overlaySchema = z.discriminatedUnion("type", [
   shakeSchema,
   animatedTextSchema,
   progressBarSchema,
+  clickRingSchema,
+  codeCardSchema,
+  terminalCardSchema,
 ]);
 
 export const sfxPresets = [
@@ -224,7 +263,7 @@ export const editPlanSchema = z.object({
  * Stored as recipe.json next to the generated edit-plan.json.
  */
 export const recipeSchema = z.object({
-  preset: z.enum(["tech-demo", "shorts", "vlog", "cinematic"]),
+  preset: z.enum(["tech-demo", "shorts", "vlog", "cinematic", "demo"]),
   // How to treat detected dead air
   silence: z.enum(["cut", "speedup", "keep"]).default("cut"),
   captions: z.boolean().default(true),
@@ -251,6 +290,9 @@ export type KenBurns = z.infer<typeof kenBurnsSchema>;
 export type Shake = z.infer<typeof shakeSchema>;
 export type AnimatedText = z.infer<typeof animatedTextSchema>;
 export type ProgressBar = z.infer<typeof progressBarSchema>;
+export type ClickRing = z.infer<typeof clickRingSchema>;
+export type CodeCard = z.infer<typeof codeCardSchema>;
+export type TerminalCard = z.infer<typeof terminalCardSchema>;
 export type SfxCue = z.infer<typeof sfxCueSchema>;
 export type AudioBlock = z.infer<typeof audioSchema>;
 export type Overlay = z.infer<typeof overlaySchema>;
