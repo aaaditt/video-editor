@@ -30,10 +30,6 @@
       "speed": 1.0515
     }
   ],
-  "captions": {
-    "style": "clean",
-    "transcriptFile": "captions.json"
-  },
   "overlays": [
     {
       "type": "progressBar",
@@ -43,8 +39,44 @@
       "type": "titleCard",
       "position": "intro",
       "durationInSeconds": 2.4,
-      "title": "demotape phase 1: record demos by driving the app with Playwright",
+      "title": "demotape phase 2: draft an edit plan from the step log",
       "subtitle": "aaaditt/video-editor · main"
+    },
+    {
+      "type": "animatedText",
+      "from": 0.10066666666666667,
+      "to": 1.1576666666666666,
+      "text": "Open the projects board",
+      "animation": "word-pop",
+      "position": "bottom",
+      "backdrop": true
+    },
+    {
+      "type": "animatedText",
+      "from": 1.4023333333333334,
+      "to": 2.9143333333333334,
+      "text": "Apply the new status filter",
+      "animation": "word-pop",
+      "position": "bottom",
+      "backdrop": true
+    },
+    {
+      "type": "animatedText",
+      "from": 3.2215333333333334,
+      "to": 4.935133333333334,
+      "text": "Only in-review work is listed now",
+      "animation": "word-pop",
+      "position": "bottom",
+      "backdrop": true
+    },
+    {
+      "type": "animatedText",
+      "from": 5.261533333333333,
+      "to": 6.975133333333334,
+      "text": "And the filter survives a reload",
+      "animation": "word-pop",
+      "position": "bottom",
+      "backdrop": true
     },
     {
       "type": "clickRing",
@@ -76,9 +108,9 @@
       "to": 2.9083333333333337,
       "region": {
         "x": 0,
-        "y": 0.2826388888888889,
-        "width": 0.381875,
-        "height": 0.25
+        "y": 0.09763888888888889,
+        "width": 0.62,
+        "height": 0.62
       },
       "easeInSeconds": 0.5
     },
@@ -87,10 +119,10 @@
       "from": 3.3083333333333336,
       "to": 4.948333333333333,
       "region": {
-        "x": 0.010400390625000006,
-        "y": 0.13680555555555557,
-        "width": 0.25,
-        "height": 0.25
+        "x": 0,
+        "y": 0,
+        "width": 0.62,
+        "height": 0.62
       },
       "easeInSeconds": 0.5
     }

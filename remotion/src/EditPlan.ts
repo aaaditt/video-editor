@@ -137,6 +137,12 @@ export const animatedTextSchema = z.object({
   text: z.string().min(1),
   animation: z.enum(["typewriter", "word-pop", "slide-in"]).default("word-pop"),
   position: z.enum(["top", "center", "bottom"]).default("center"),
+  /**
+   * Draw a dark pill behind the text. Off by default so existing looks are
+   * unchanged; on when the text acts as a caption over UI that might be light,
+   * where a shadow alone is not enough to stay legible.
+   */
+  backdrop: z.boolean().default(false),
 });
 
 export const progressBarSchema = z.object({

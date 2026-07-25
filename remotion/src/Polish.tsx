@@ -13,6 +13,9 @@ import { AnimatedText } from "./library/AnimatedText";
 import { MusicTrack, SfxLayer, type SpeechWindow } from "./library/AudioTrack";
 import { Captions } from "./library/Captions";
 import { Callout } from "./library/Callout";
+import { ClickRing } from "./library/ClickRing";
+import { CodeCard } from "./library/CodeCard";
+import { TerminalCard } from "./library/TerminalCard";
 import {
   ColorGradeWrapper,
   FilmGrainLayer,
@@ -151,6 +154,9 @@ export const Polish: React.FC<PolishProps> = ({ plan, captions }) => {
   const grades = byType("colorGrade");
   const animatedTexts = byType("animatedText");
   const lightLeaks = byType("lightLeak");
+  const clickRings = byType("clickRing");
+  const codeCards = byType("codeCard");
+  const terminalCards = byType("terminalCard");
   const watermark = byType("watermark")[0];
   const filmGrain = byType("filmGrain")[0];
   const vignette = byType("vignette")[0];
@@ -183,6 +189,26 @@ export const Polish: React.FC<PolishProps> = ({ plan, captions }) => {
                 <MainVideo plan={plan} />
               </ColorGradeWrapper>
             </KenBurnsWrapper>
+
+            {/* Inside the zoom transform on purpose: a ring is anchored to the
+                element that was clicked, so when a zoom is active it has to
+                travel and scale with the frame or it drifts off target. */}
+            {clickRings.map((ring, i) => {
+              const { startFrame, durationInFrames } = rangeToSequence(
+                ring.at,
+                ring.at + ring.durationInSeconds,
+              );
+              if (durationInFrames <= 0) return null;
+              return (
+                <Sequence
+                  key={`click-${i}`}
+                  from={startFrame}
+                  durationInFrames={durationInFrames}
+                >
+                  <ClickRing ring={ring} durationInFrames={durationInFrames} />
+                </Sequence>
+              );
+            })}
           </ZoomPan>
         </ShakeWrapper>
 
@@ -240,6 +266,33 @@ export const Polish: React.FC<PolishProps> = ({ plan, captions }) => {
           return (
             <Sequence key={`text-${i}`} from={startFrame} durationInFrames={durationInFrames}>
               <AnimatedText overlay={text} durationInFrames={durationInFrames} />
+            </Sequence>
+          );
+        })}
+
+        {/* Cards take over the frame, so they go last — above captions too. */}
+        {codeCards.map((card, i) => {
+          const { startFrame, durationInFrames } = rangeToSequence(
+            card.from,
+            card.to,
+          );
+          if (durationInFrames <= 0) return null;
+          return (
+            <Sequence key={`code-${i}`} from={startFrame} durationInFrames={durationInFrames}>
+              <CodeCard card={card} durationInFrames={durationInFrames} />
+            </Sequence>
+          );
+        })}
+
+        {terminalCards.map((card, i) => {
+          const { startFrame, durationInFrames } = rangeToSequence(
+            card.from,
+            card.to,
+          );
+          if (durationInFrames <= 0) return null;
+          return (
+            <Sequence key={`term-${i}`} from={startFrame} durationInFrames={durationInFrames}>
+              <TerminalCard card={card} durationInFrames={durationInFrames} />
             </Sequence>
           );
         })}

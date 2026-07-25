@@ -29,13 +29,22 @@ export const AnimatedText: React.FC<{
   }[overlay.position];
 
   const baseStyle: React.CSSProperties = {
-    fontSize: height * 0.07,
+    // A caption carrying the whole explanation needs to sit lower and smaller
+    // than a full-frame statement, or it covers the UI it describes.
+    fontSize: overlay.backdrop ? height * 0.05 : height * 0.07,
     fontWeight: 800,
     color: "white",
     textAlign: "center",
     maxWidth: "85%",
     textShadow: "0 4px 24px rgba(0,0,0,0.85)",
     opacity: fadeOut,
+    ...(overlay.backdrop
+      ? {
+          backgroundColor: "rgba(0,0,0,0.62)",
+          padding: `${height * 0.016}px ${height * 0.032}px`,
+          borderRadius: height * 0.018,
+        }
+      : {}),
   };
 
   let content: React.ReactNode;

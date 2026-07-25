@@ -17,7 +17,6 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import type { Caption } from "@remotion/captions";
 import {
   editPlanSchema,
   type EditPlan,
@@ -52,6 +51,12 @@ const ZOOM_MAX_AREA = 0.05;
 const ZOOM_MIN_SEGMENT = 1.6;
 const MAX_ZOOMS = 3;
 const ZOOM_PADDING = 2.6;
+/**
+ * ZoomPan scales by 1/region-size, so a small region magnifies hard — a 0.25
+ * region is a 4x punch-in that shows a corner of the app and nothing else.
+ * Floor the region to keep the strongest zoom around 1.6x.
+ */
+const ZOOM_MIN_REGION = 0.62;
 
 const CODE_CARD_MAX_SECONDS = 3.2;
 const CODE_CARD_MIN_SECONDS = 1.5;
@@ -134,40 +139,34 @@ const toRough = (chapter: Chapter, srcSeconds: number): number =>
     chapter.speed;
 
 /**
- * Captions, straight from the step text — no transcription involved. Words are
- * spread evenly across the chapter, which is what gives the existing
- * word-highlighting caption component something to highlight.
+ * Chapter text, straight from the step captions — no transcription involved.
+ *
+ * Deliberately NOT the Captions component: that one pages via
+ * createTikTokStyleCaptions, which groups tokens within 1.5s and caps a page at
+ * 1.5s. Both assumptions hold for continuous speech and break here, where each
+ * chapter is one complete sentence that must appear for exactly its own
+ * chapter — grouping merged the tail of one chapter with the head of the next
+ * ("...status filter" + "Only..."). animatedText takes an explicit from/to, so
+ * the boundary is stated rather than inferred.
  */
-export const buildCaptions = (chapters: Chapter[]): Caption[] => {
-  const captions: Caption[] = [];
-
-  chapters.forEach((chapter) => {
-    const words = wordsOf(chapter.step.caption);
-    if (words.length === 0) return;
-
-    // Leave a beat at each end so text doesn't butt against the cut.
-    const pad = Math.min(0.18, chapter.roughDuration * 0.08);
-    const start = chapter.roughStart + pad;
-    const span = Math.max(0.3, chapter.roughDuration - pad * 2);
-    const per = span / words.length;
-
-    words.forEach((word, i) => {
-      const fromMs = Math.round((start + i * per) * 1000);
-      const toMs = Math.round((start + (i + 1) * per) * 1000);
-      captions.push({
-        // Leading space on all but the first token of a chapter, matching the
-        // whisper convention the caption component was built against.
-        text: i === 0 ? word : ` ${word}`,
-        startMs: fromMs,
-        endMs: toMs,
-        timestampMs: fromMs,
-        confidence: 1,
-      });
+export const buildChapterText = (chapters: Chapter[]): Overlay[] =>
+  chapters
+    .filter((c) => wordsOf(c.step.caption).length > 0)
+    .map((chapter): Overlay => {
+      // Leave a beat at each end so text doesn't butt against the cut.
+      const pad = Math.min(0.18, chapter.roughDuration * 0.08);
+      return {
+        type: "animatedText",
+        from: chapter.roughStart + pad,
+        to: chapter.roughStart + chapter.roughDuration - pad,
+        text: chapter.step.caption,
+        animation: "word-pop",
+        position: "bottom",
+        // The app fills the frame here, and it may be light — a shadow alone
+        // would not keep this readable.
+        backdrop: true,
+      };
     });
-  });
-
-  return captions;
-};
 
 const buildClickRings = (chapters: Chapter[], offsetMs: number): Overlay[] =>
   chapters.flatMap((chapter) =>
@@ -209,8 +208,8 @@ const buildZooms = (chapters: Chapter[]): Overlay[] => {
     const f = c.step.focus!;
     const cx = f.x + f.width / 2;
     const cy = f.y + f.height / 2;
-    const w = clamp(f.width * ZOOM_PADDING, 0.25, 1);
-    const h = clamp(f.height * ZOOM_PADDING, 0.25, 1);
+    const w = clamp(f.width * ZOOM_PADDING, ZOOM_MIN_REGION, 1);
+    const h = clamp(f.height * ZOOM_PADDING, ZOOM_MIN_REGION, 1);
     return {
       type: "zoom",
       from: c.roughStart + 0.25,
@@ -239,7 +238,7 @@ export const draftDemoPlan = (
     music: string | null;
     aspect: "source" | "9:16" | "1:1";
   },
-): { plan: EditPlan; captions: Caption[]; notes: string[] } => {
+): { plan: EditPlan; notes: string[] } => {
   const notes: string[] = [];
   const chapters = buildChapters(stepsFile, videoDuration);
   const git = readGitContext();
@@ -265,6 +264,8 @@ export const draftDemoPlan = (
         : {}),
     });
   }
+
+  if (opts.captions) overlays.push(...buildChapterText(chapters));
 
   if (opts.clicks) {
     overlays.push(...buildClickRings(chapters, stepsFile.offsetMs));
@@ -319,9 +320,8 @@ export const draftDemoPlan = (
       height: probe.height,
     },
     segments,
-    ...(opts.captions
-      ? { captions: { style: "clean", transcriptFile: "captions.json" } }
-      : {}),
+    // No `captions` block: chapter text is carried by animatedText overlays,
+    // so there is no transcript file for this path at all.
     overlays,
     audio: {
       ...(opts.music
@@ -332,11 +332,7 @@ export const draftDemoPlan = (
     },
   });
 
-  return {
-    plan,
-    captions: opts.captions ? buildCaptions(chapters) : [],
-    notes,
-  };
+  return { plan, notes };
 };
 
 const firstMusicFile = (): string | null => {
@@ -380,7 +376,7 @@ const main = () => {
     console.warn("! --music given but public/assets/music/ is empty.");
   }
 
-  const { plan, captions, notes } = draftDemoPlan(
+  const { plan, notes } = draftDemoPlan(
     job,
     stepsFile,
     stepsFile.videoDurationSeconds,
@@ -400,12 +396,10 @@ const main = () => {
     path.join(jobDir, "edit-plan.json"),
     JSON.stringify(plan, null, 2),
   );
-  if (captions.length > 0) {
-    fs.writeFileSync(
-      path.join(jobDir, "captions.json"),
-      JSON.stringify(captions, null, 2),
-    );
-  }
+  // A captions.json left over from an earlier draft would be stale and
+  // misleading — the plan no longer references one.
+  const staleCaptions = path.join(jobDir, "captions.json");
+  if (fs.existsSync(staleCaptions)) fs.rmSync(staleCaptions);
 
   const roughSeconds = plan.segments.reduce(
     (s, seg) => s + (seg.end - seg.start) / seg.speed,
@@ -420,7 +414,7 @@ const main = () => {
     `\n✓ Draft plan for "${job}"\n` +
       `  ${plan.segments.length} chapter(s), ` +
       `${stepsFile.videoDurationSeconds.toFixed(1)}s raw → ${roughSeconds.toFixed(1)}s cut\n` +
-      `  ${captions.length} caption token(s), overlays: ` +
+      `  overlays: ` +
       `${Object.entries(counts)
         .map(([k, v]) => `${v} ${k}`)
         .join(", ")}`,

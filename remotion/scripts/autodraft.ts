@@ -250,6 +250,7 @@ export const draftPlan = (
         text: hookWords,
         animation: "word-pop",
         position: "top",
+        backdrop: false,
       });
     }
   }
